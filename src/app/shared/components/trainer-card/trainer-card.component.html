@@ -1,1 +1,19 @@
-<p>trainer-card works!</p>
+<!-- *ngIf="trainer" -> On ne construit la card que si la prop trainer n'est pas undefined -->
+<div class="w-full h-full  flex flex-col items-center" *ngIf="trainer; else errorCard" 
+    [ngClass]="{'bg-pink-400': trainer.gender === 'f', 'bg-blue-400' : trainer.gender === 'm'}">
+
+    <div>{{ trainer.firstname }} {{ trainer.lastname}}</div>
+    <img class="h-3/6" [src]="trainer.avatar" [alt]="trainer.firstname">
+    <div>{{ trainer.birthdate | date : 'dd/MM/yyyy' }}</div>
+    <button (click)="sendTrainer()" class="btn">C'est moi wesh 🍦</button>
+
+</div>
+
+<ng-template #errorCard>
+    <div
+    class="bg-slate-200 h-5/6 w-1/5 rounded-lg flex flex-col items-center" >
+        <div>Error</div>
+        <img class="h-3/6" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="error">
+    </div>
+</ng-template>
+

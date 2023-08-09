@@ -8,7 +8,26 @@
         <app-enfant (onNeedSelect)="receiveNeed($event)"
             [prenomParent]="prenom" 
             [hobbiesParent]="['Pétanque', 'Ricard', 'Le foute']">
+
+            <p>Y'a du soleil et des nanas, darla dirla dada</p>
+
         </app-enfant>
     </div>
 
+</div>
+
+<div class="chapter">
+    <h3>Démo avec cards formateurs</h3>
+
+    <p class="text-center text-2xl"> Le formateur du jour est {{ trainerOfTheDay ? trainerOfTheDay.firstname : '...' }}</p>
+
+    <div class="flex justify-evenly items-center bg-slate-50 h-44">
+        <app-trainer-card 
+        class="bg-slate-200 h-5/6 w-1/5 rounded-lg" 
+        *ngFor="let formateur of trainersList"
+        [trainer]="formateur"
+        (onSelectTrainer)="trainerOfTheDay = $event">
+        
+        </app-trainer-card>
+    </div>
 </div>

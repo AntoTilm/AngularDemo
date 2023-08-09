@@ -23,7 +23,8 @@ import { TrainerCardComponent } from './components/trainer-card/trainer-card.com
     ToFahrenheitPipe,
     ConvertTempPipe,
     ConvertTimePipe,
-    HighlightDirective
+    HighlightDirective,
+    TrainerCardComponent
   ]
 })
 export class SharedModule { }
