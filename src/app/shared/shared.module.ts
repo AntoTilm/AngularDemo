@@ -4,6 +4,7 @@ import { ToFahrenheitPipe } from './pipes/to-fahrenheit.pipe';
 import { ConvertTempPipe } from './pipes/convert-temp.pipe';
 import { ConvertTimePipe } from './pipes/convert-time.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { TrainerCardComponent } from './components/trainer-card/trainer-card.component';
 
 
 
@@ -12,7 +13,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     ToFahrenheitPipe,
     ConvertTempPipe,
     ConvertTimePipe,
-    HighlightDirective
+    HighlightDirective,
+    TrainerCardComponent
   ],
   imports: [
     CommonModule
