@@ -27,7 +27,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       { title : 'Exo 2 : La Shopping List V1', url : '/exo/exo2'},
       { title : 'Exo 3 : La shopping List V2', url : '/exo/exo3'},
       { title : 'Exo 4 : Le formulaire', url : '/exo/exo4'},
-      { title : 'Exo 5 : Le gestionnaire de fans', url : '/exo/exo5'}
+      { title : 'Exo 5 : Le gestionnaire de fans', url : '/exo/exo5'},
+      { title : 'Exo 6 : HTTP request', url : '/exo/exo6'}
      ]}
    ];
 
