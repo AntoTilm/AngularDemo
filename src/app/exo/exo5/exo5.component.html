@@ -1,0 +1,24 @@
+<h2>Gestion de fans avec formulaires et routing</h2>
+<div class="chapter">
+    <div>
+        <button class="btn" routerLink="/exo/exo5/create">Ajouter un fan</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fan of listFan">
+                <td>{{fan.name}}</td>
+                <td>
+                    <button class="btn" routerLink="/exo/exo5/details/{{fan.id}}">🔎 Détails</button>
+                    <button class="btn" routerLink="/exo/exo5/update/{{fan.id}}">📝 Modifier</button>
+                    <button class="btn" (click)="delete(fan.id)">❌ Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

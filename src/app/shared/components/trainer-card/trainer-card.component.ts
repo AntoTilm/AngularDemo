@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Trainer } from '../../models/trainers';
+import { Trainer } from '../../models/trainer';
 
 @Component({
   selector: 'app-trainer-card',

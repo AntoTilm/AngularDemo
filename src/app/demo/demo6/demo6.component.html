@@ -1,0 +1,123 @@
+<h2>Demo 6 - Les formulaires</h2>
+<div class="chapter">
+    <form class="w-4/6 m-auto" [formGroup]="registerForm" (ngSubmit)="createUser()">
+        <!-- Pour utiliser [formGroup] on doit penser à importer ReactiveFormsModule -->
+        <div class="flex justify-between">
+            <div class="form-group w-2/5">
+                <label for="lastname">Votre nom :</label>
+                <input id="lastname" type="text" formControlName="lastname">
+                <!-- Marche mais pas précis -->
+                <!-- <span class="text-sm text-red-600"
+                    *ngIf="!registerForm.get('lastname')?.valid">Error</span> -->
+                <span class="text-sm text-red-600"
+                    *ngIf="registerForm.get('lastname')?.touched && registerForm.get('lastname')?.errors?.['required']">Champs
+                    requis</span>
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('lastname')?.errors?.['maxlength']">Maximum
+                    100 caractères</span>
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('lastname')?.errors?.['pattern']">Vous ne
+                    pouvez pas rentrer de chiffres</span>
+            </div>
+
+            <div class="form-group w-2/5">
+                <label for="firstname">Votre prénom :</label>
+                <input id="firstname" type="text" formControlName="firstname">
+                <span class="text-sm text-red-600"
+                    *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.errors?.['required']">Champs
+                    requis</span>
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('firstname')?.errors?.['maxlength']">Maximum
+                    100 caractères</span>
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('firstname')?.errors?.['pattern']">Vous ne
+                    pouvez pas rentrer de chiffres</span>
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+
+            <div class="form-group w-2/5">
+                <label for="birthdate">Votre date de naissance :</label>
+                <input id="birthdate" type="date" formControlName="birthdate">
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('birthdate')?.errors?.['beforetoday']">Vous
+                    ne pouvez entrer une date dans le futur</span>
+            </div>
+            <div class="form-group w-2/5">
+                <label for="nationality">Votre nationalité :</label>
+                <select id="nationality" formControlName="nationality">
+                    <option value="" hidden>Choisissez votre nationalité</option>
+                    <option value="be">Belge</option>
+                    <option value="fr">Français</option>
+                    <option value="cg">Congolais</option>
+                    <option value="ca">Canadien</option>
+                </select>
+                <span class="text-sm text-red-600"
+                    *ngIf="registerForm.get('nationality')?.touched && registerForm.get('nationality')?.errors?.['required']">Champs
+                    requis</span>
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <div class="form-group w-2/5">
+                <label for="mail">Votre mail :</label>
+                <input id="mail" type="email" formControlName="email">
+                <span class="text-sm text-red-600"
+                    *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['required']">Champs
+                    requis</span>
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('email')?.errors?.['email']">Format de mail
+                    invalide</span>
+            </div>
+
+            <div class="form-group w-2/5">
+                <label for="pwd">Votre mot de passe :</label>
+                <input id="pwd" type="password" formControlName="password">
+                <span class="text-sm text-red-600"
+                    *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors?.['required']">Champs
+                    requis</span>
+                <span class="text-sm text-red-600" *ngIf="registerForm.get('password')?.errors?. ['pattern']">Votre mot
+                    de passe doit contenir au moins 8 caractères dont une minuscule, une majuscule et un chiffre</span>
+            </div>
+        </div>
+
+        <div class="flex justify-between">
+            <div class="form-group w-2/5">
+                <div>Sélectionnez votre genre :</div>
+                <div>
+                    <input id="male" type="radio" value="male" formControlName="gender"><label for="male">Homme</label>
+
+                    <input id="female" type="radio" value="female" formControlName="gender"><label
+                        for="female">Femme</label>
+
+                    <input id="other" type="radio" value="other" formControlName="gender"><label
+                        for="other">Autre</label>
+                </div>
+            </div>
+
+            <div class="form-group w-2/5">
+                <div>Situation maritale :</div>
+                <div>
+                    <input id="single" type="checkbox" formControlName="single">
+                    <label for="single">Êtes-vous célibataire ?</label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div formArrayName="hobbies">
+            <div>Renseignez vos hobbies :</div>
+            <button type="button" class="btn" (click)="addHobby()">Ajouter un hobby :</button>
+
+            <div *ngFor="let control of hobbies.controls; let i = index">
+                <label [for]=" 'hobby'+i ">Hobby N°{{i+1}}</label>
+                <input [id]=" 'hobby'+i " type="text" [formControlName]="i">
+                <span class="select-none cursor-pointer" (click)="removeHobby(i)">❌</span>
+                <span class="text-sm text-red-600"
+                    *ngIf="hobbies.controls[i].touched && hobbies.controls[i].errors?.['required']">Ce champs est
+                    requis</span>
+            </div>
+
+        </div>
+
+        <div class="flex justify-end">
+            <input class="btn" type="submit" value="Créer mon compte">
+        </div>
+    </form>
+</div>

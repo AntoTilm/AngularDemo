@@ -97,3 +97,23 @@ La version flemme
 ```
     ng g p (dossier/)nomPipe
 ```
+
+## Créer une directive
+La version longue
+```
+    ng generate d (dossier/)nomDirective
+```
+La version flemme
+```
+    ng g d (dossier/)nomDirective
+```
+
+## Créer un service
+La version longue
+```
+    ng generate service (dossier/)nomService
+```
+La version flemme
+```
+    ng g s (dossier/)nomService
+```

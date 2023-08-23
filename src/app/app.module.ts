@@ -7,6 +7,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFrBe from '@angular/common/locales/fr-BE';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localeFrBe);
 
@@ -19,6 +20,7 @@ registerLocaleData(localeFrBe);
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   exports : [],
   providers: [

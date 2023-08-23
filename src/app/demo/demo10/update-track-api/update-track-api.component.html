@@ -1,0 +1,39 @@
+<h2>Modification d'un son</h2>
+<div class="chapter">
+    <div>
+        <a routerLink="/demo/demo10">Retour à la playlist</a>
+    </div>
+
+    <form [formGroup]="trackForm" (ngSubmit)="updateTrack()">
+        <div>
+            <input type="text" placeholder="Titre du son" formControlName="title">
+        </div>
+        <div>
+            <input type="number" placeholder="Durée en secondes" formControlName="duration">
+        </div>
+        <div>
+            <select formControlName="genre">
+                <option value="" hidden>Choisissez un genre</option>
+                <option value="Rap">Rap</option>
+                <option value="Pop">Pop</option>
+                <option value="Rock">Rock</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Electro">Electro</option>
+            </select>
+        </div>
+        <div>
+            <input type="url" placeholder="Lien vers la jaquette" formControlName="cover">
+        </div>
+        <div formArrayName="artists">
+            <h3>Ajouter un/des artiste(s) :</h3>
+            <input class="btn" type="button" value="Nouvel artiste" (click)="addArtist()">
+            <div *ngFor="let artist of artists.controls; let i = index">
+                <input type="text" placeholder="Artiste N°{{i+1}}" [formControlName]="i">
+                <span class="select-none cursor-pointer" (click)="removeArtist(i)">❌</span>
+            </div>
+        </div>
+        <div>
+            <input class="btn" type="submit" value="Modifier">
+        </div>
+    </form>
+</div>

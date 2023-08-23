@@ -1,0 +1,37 @@
+<h2>Ajouter un fan</h2>
+<div class="chapter">
+    <div>
+        <a routerLink="/exo/exo5">Retour à la liste</a>
+    </div>
+
+    <form [formGroup]="fanForm" (ngSubmit)="addFan()">
+        <div>
+            <input type="text" placeholder="Nom" formControlName="name">
+            <span *ngIf="fanForm.get('name')?.touched && fanForm.get('name')?.errors?.['required']" class="text-red-600 text-sm">Champs Requis</span>
+        </div>
+
+        <div>
+            <input type="date" placeholder="Date de Naissance" formControlName="birthdate">
+            
+            <span *ngIf="fanForm.get('birthdate')?.touched && fanForm.get('birthdate')?.errors?.['required']" class="text-red-600 text-sm">Champs Requis</span>
+
+            <span *ngIf="fanForm.get('birthdate')?.errors?.['age']" class="text-red-600 text-sm">Trop jeune barre-toi !</span>
+        </div>
+
+        <div formArrayName="series">
+            <h3>Ajouter des séries</h3>
+            <input class="btn" type="button" value="Ajouter une série" (click)="addSerie()">
+
+            <div *ngFor="let serie of series.controls; let i = index">
+                <input type="text" placeholder="Série N°{{i}}" [formControlName]="i">
+                <span class="select-none cursor-pointer" (click)="removeSerie(i)">❌</span>
+                <span *ngIf="series.controls[i].touched && series.controls[i].errors?.['required']" class="text-red-600 text-sm">Champs Requis</span>
+            </div>
+        </div>
+
+        <div>
+            <!-- <button class="btn" type="submit">Ajouter</button> -->
+            <input class="btn" type="submit" value="Ajouter">
+        </div>
+    </form>
+</div>

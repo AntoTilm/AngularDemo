@@ -1,0 +1,10 @@
+<h2>Shopping List V2 - avec Service</h2>
+<div class="chapter">
+    <div>
+        <input type="text" placeholder="Nom du produit" [(ngModel)]="productName" (keyup.Enter)="addProduct()">
+        <button (click)="addProduct()" class="btn">Ajouter</button>
+    </div>
+
+
+    <app-shopping-list></app-shopping-list>
+</div>

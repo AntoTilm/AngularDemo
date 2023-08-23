@@ -1,0 +1,26 @@
+<div class="subchapter">
+    <h4>Ma liste de courses</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Quantité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of listToShow">
+                <td>{{ item.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>
+                    <!-- <button (click)="sendDownQty(item)" class="btn">➖</button> -->
+                    <button (click)="down(item)" class="btn">➖</button>
+                    <button (click)="up(item)" class="btn">➕</button>
+                    <button (click)="delete(item)" class="btn">❌</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

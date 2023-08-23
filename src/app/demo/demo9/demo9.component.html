@@ -1,0 +1,17 @@
+<h2>HttpClient : Les requêtes API</h2>
+<div class="chapter">
+    <div>
+        <input type="text" placeholder="Entrez votre prénom" [(ngModel)]="firstname">
+        <select [(ngModel)]="countryCode">
+            <option value="" hidden>Choisissez un pays</option>
+            <option value="BE">Belgique</option>
+            <option value="FR">France</option>
+            <option value="CA">Canada</option>
+            <option value="MA">Maroc</option>
+        </select>
+        <button class="btn" (click)="search()">Chercher</button>
+    </div>
+    <div>
+        {{ageMsg}}
+    </div>
+</div>

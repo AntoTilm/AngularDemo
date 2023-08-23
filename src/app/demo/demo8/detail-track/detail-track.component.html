@@ -1,0 +1,25 @@
+<div>
+    <a routerLink="/demo/demo8">Retour à la playlist</a>
+</div>
+
+<div *ngIf="track">
+    <h2>Détail de la track avec l'id {{track.id}} </h2>
+    <div class="chapter">
+        <h3> {{ track.title }} </h3>
+        <img class="w-32" [src]="track.cover" alt="jaquette de {{track.title}}">
+        <div>
+            <span>Durée : </span> <span>{{ track.duration | convertTime }}</span>
+        </div>
+        <div>
+            <span>Genre : </span> <span> {{ track.genre }} </span>
+        </div>
+        <div>
+            <h4>Artistes : </h4>
+            <ul>
+                <li *ngFor="let artist of track.artists">
+                    {{ artist }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

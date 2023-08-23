@@ -1,0 +1,17 @@
+<h2>Détails du fan</h2>
+
+<div *ngIf="fan" class="chapter">
+    <div>
+        <a routerLink="/exo/exo5">Retour à la liste</a>
+    </div>
+    <h3>Nom du fan : {{fan.name}}</h3>
+    <div>Date de naissance : {{fan.birthdate | date : 'dd/MM/yyyy'}}</div>
+    <div>
+        <h4>Ses séries préférées : </h4>
+        <ul>
+            <li *ngFor="let serie of fan.series">
+                {{serie}}
+            </li>
+        </ul>
+    </div>
+</div>

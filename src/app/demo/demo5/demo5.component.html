@@ -1,0 +1,16 @@
+<h2>Demo 5 - Les services</h2>
+<div class="chapter">
+    <div *ngIf="!connectedUser">
+        <input class="mb-2" type="email" placeholder="Votre email" [(ngModel)]="email">
+        <br>
+        <input class="mb-2" type="password" placeholder="Votre mot de passe" [(ngModel)]="password">
+        <br>
+        <p class="text-sm text-red-700"> {{errorMsg}} </p>
+        <button (click)="connect()" class="btn">Se connecter</button>
+    </div>
+
+    <div *ngIf="connectedUser">
+        <p>Bienvenue {{ connectedUser.firstname }}</p>
+        <button (click)="disconnect()" class="btn">Se déconnecter</button>
+    </div>
+</div>

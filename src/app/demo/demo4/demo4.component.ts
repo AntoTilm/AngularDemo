@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Trainer } from 'src/app/shared/models/trainers';
+import { Trainer } from 'src/app/shared/models/trainer';
 
 @Component({
   selector: 'app-demo4',
