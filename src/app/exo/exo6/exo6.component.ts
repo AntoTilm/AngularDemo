@@ -23,10 +23,6 @@ export class Exo6Component implements OnInit {
   previousUrl? : string;
   pokemonCount? : number;
 
-  // Compteur de Pokemon avec le offSet et limit de l'Url de requete
-  // offsetValue : number = 0;
-  // limitValue : number = 20;
-
   constructor(private _pokemonHttpRequest: PokemonRequestService) { }
   
   /**
