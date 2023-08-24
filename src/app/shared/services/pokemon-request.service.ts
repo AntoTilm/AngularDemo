@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+// {
+//   providedIn: 'root'
+// }
 export class PokemonRequestService {
 
   constructor(private http: HttpClient) { }
 
-  getAllPokemon(url : string) {
+  getPokemonAll(url : string) {
     return this.http.get<any>(url);
   }
   getPokemonByName (name : string) {
     return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/'+name);
   }
-  getFrenchDetails (name : string) {
+  getPokemonSpeciesFrenchDetails (name : string) {
     return this.http.get<any>('https://pokeapi.co/api/v2/pokemon-species/'+name);
   }
 }

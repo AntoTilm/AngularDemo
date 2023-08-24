@@ -15,6 +15,7 @@ import { CreateFanComponent } from './exo5/create-fan/create-fan.component';
 import { DetailsFanComponent } from './exo5/details-fan/details-fan.component';
 import { UpdateFanComponent } from './exo5/update-fan/update-fan.component';
 import { Exo6Component } from './exo6/exo6.component';
+import { PokemonRequestService } from '../shared/services/pokemon-request.service';
 
 
 @NgModule({
@@ -36,6 +37,9 @@ import { Exo6Component } from './exo6/exo6.component';
     ExoRoutingModule,
     SharedModule,
     // FormsModule
+  ],
+  providers: [
+    {provide: PokemonRequestService, useClass: PokemonRequestService}
   ]
 })
 export class ExoModule { }
