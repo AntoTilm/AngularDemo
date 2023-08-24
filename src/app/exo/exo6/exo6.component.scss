@@ -58,6 +58,16 @@
     justify-content: space-between;
 }
 
+.home:first-of-type {
+    font-size: xx-small;
+
+}
+
+.home {
+    font-size: small;
+    font-weight: bold;
+}
+
 button {
     margin: 20% 0;
     width: 50px;
@@ -81,7 +91,7 @@ button {
 }
 
 .img {
-    height: 40%;
+    height: 55%;
     display: flex;
     justify-content: center;
     align-items: center;

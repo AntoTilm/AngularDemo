@@ -6,8 +6,8 @@
             <div class="name">{{this.pokemonDetails?.name}}</div>
             <div class="img">
                 <img class="imgSacha" *ngIf="!pokemonDetails" src="https://66.media.tumblr.com/tumblr_mai132OrFS1rfjowdo1_500.gif" alt="Sacha et Pika">
-                <img *ngIf="pokemonDetails" src="{{this.pokemonDetails?.sprites?.back_default}}" alt="image back">
-                <img *ngIf="pokemonDetails" src="{{this.pokemonDetails?.sprites?.front_default}}" alt="image front">
+                <img class="img" *ngIf="pokemonDetails" src="{{this.pokemonDetails?.sprites?.front_default}}" alt="image front">
+                <img class="img" *ngIf="pokemonDetails" src="{{this.pokemonDetails?.sprites?.back_default}}" alt="image back">
             </div>
             <div class="description">{{this.pokemonFrenchDetails?.flavor_text}}
 
@@ -26,12 +26,12 @@
 
             <div class="next-previous">                
                 <button (click)="previousView()">⬆</button>
-                <button (click)="homeView()">🛖</button>
+                <button (click)="homeView()">
+                    <div class="home">{{offsetValueNumber}}->{{offsetValueNumber20}}</div>
+                    <div class="home">/ {{pokemonCount}}</div>
+                </button>
                 <button (click)="nextView()">⬇</button>
             </div>
-        </div>
-        <div>
-            <button>{{pokemonCount}}</button>
         </div>
     </div>
 

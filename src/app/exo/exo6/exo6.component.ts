@@ -13,7 +13,7 @@ import { PokemonRequestService } from 'src/app/shared/services/pokemon-request.s
 export class Exo6Component implements OnInit {
   // Objets à affiché dans le HTML
   pokemonList: iPokemonBase[] = []; 
-  pokemonDetails! : iPokemonDetails; 
+  pokemonDetails? : iPokemonDetails; 
   pokemonFrenchDetails?: iPokemonFrenchDetails;
 
   // Url des Pokémons par 20 + url des 20 prochains et précédants pokemons + nombre total de Pokemon
@@ -23,6 +23,11 @@ export class Exo6Component implements OnInit {
   previousUrl? : string;
   pokemonCount? : number;
 
+  // Numérotation de la liste
+  offsetValue? : string;
+  offsetValueNumber? : number;
+  offsetValueNumber20? : number;
+
   constructor(private _pokemonHttpRequest: PokemonRequestService) { }
   
   /**
@@ -30,7 +35,6 @@ export class Exo6Component implements OnInit {
    */
   ngOnInit(): void {
     this.homeView()
-    this.actualUrl == this.homeUrl
       // this.totalCount = data.count; // A rajouter pour le compteur de pokemon
       //#region Début de code pour rapatrier les noms en francais  
       // Faire un foreach sur pokemonList. Faire des log pour les résultats. Modifier la liste POkemlist
@@ -49,7 +53,9 @@ export class Exo6Component implements OnInit {
     this._pokemonHttpRequest.getPokemonAll(this.homeUrl).subscribe(data => {
       this.dataAssignmentToProperty(data);
       this.actualUrl = this.homeUrl;
-      this.findIndex()
+      this.findIndex();
+      this.pokemonDetails = undefined;
+      this.pokemonFrenchDetails = undefined;
     })
   }
 
@@ -60,8 +66,9 @@ export class Exo6Component implements OnInit {
   nextView() : void {
     if(this.nextUrl!=null) {
       this._pokemonHttpRequest.getPokemonAll(this.nextUrl).subscribe(data => {
-        this.dataAssignmentToProperty(data)
         this.actualUrl = this.nextUrl;
+        this.findIndex()
+        this.dataAssignmentToProperty(data)
       })
     }
   } 
@@ -73,8 +80,9 @@ export class Exo6Component implements OnInit {
   previousView(): void {
     if(this.previousUrl!=null) {
       this._pokemonHttpRequest.getPokemonAll(this.previousUrl).subscribe(data => {
-        this.dataAssignmentToProperty(data);
         this.actualUrl = this.previousUrl;
+        this.findIndex()
+        this.dataAssignmentToProperty(data);
       })
     }
   }
@@ -106,8 +114,7 @@ export class Exo6Component implements OnInit {
     this.pokemonList = data.results;
     this.nextUrl = data.next;
     this.previousUrl = data.previous;
-    this.pokemonCount = data.count    
-    this.findIndex()
+    this.pokemonCount = data.count
   }
 
   /**
@@ -121,11 +128,12 @@ export class Exo6Component implements OnInit {
     const limitIndex = this.actualUrl?.indexOf("limit=");
     
     // Extraire les valeurs après les occurrences
-    const offsetValue = this.actualUrl?.slice(offsetIndex! + 7, limitIndex! - 1);
+    this.offsetValue = this.actualUrl?.slice(offsetIndex! + 7, limitIndex! - 1);
     const limitValue = this.actualUrl?.slice(limitIndex! + 6);
+    this.offsetValueNumber = parseInt(this.offsetValue!);
+    this.offsetValueNumber++;
+    this.offsetValueNumber20 = this.offsetValueNumber+19;
     
-    console.log("Offset:", offsetValue); // Output: Offset: 0
-    console.log("Limit:", limitValue);   // Output: Limit: 20
   }
 
 }
