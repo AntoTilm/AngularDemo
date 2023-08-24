@@ -14,7 +14,8 @@ export class Exo6Component implements OnInit {
   // Objets à affiché dans le HTML
   pokemonList: iPokemonBase[] = []; 
   pokemonDetails? : iPokemonDetails; 
-  pokemonFrenchDetails?: iPokemonFrenchDetails;
+  pokemonFrenchText?: iPokemonFrenchDetails;
+  pokemonFrenchName?: iPokemonFrenchDetails;
 
   // Url des Pokémons par 20 + url des 20 prochains et précédants pokemons + nombre total de Pokemon
   homeUrl = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
@@ -55,7 +56,7 @@ export class Exo6Component implements OnInit {
       this.actualUrl = this.homeUrl;
       this.findIndex();
       this.pokemonDetails = undefined;
-      this.pokemonFrenchDetails = undefined;
+      this.pokemonFrenchText = undefined;
     })
   }
 
@@ -103,8 +104,12 @@ export class Exo6Component implements OnInit {
    */
   frenchRequestText(name : string) {
     this._pokemonHttpRequest.getPokemonSpeciesFrenchDetails(name).subscribe(data => {    
-      this.pokemonFrenchDetails = data.flavor_text_entries.find((item : iPokemonFrenchDetails) => item.language.name === 'fr')
+      this.pokemonFrenchText = data.flavor_text_entries.find((text : iPokemonFrenchDetails) => text.language.name === 'fr');
+      this.pokemonFrenchName = data.names.find((item : iPokemonFrenchDetails) => item.language.name === 'fr');
+      this.pokemonDetails!.name = this.pokemonFrenchName!.name
+      console.log(this.pokemonFrenchName);      
     });
+    
   }
   
   /**
