@@ -105,3 +105,17 @@ button {
         justify-content: center;
         background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(147,4,53,0) 10%, rgba(166,3,44,0) 90%, rgba(255,0,0,1) 100%);
     }
+
+.imgSacha {
+    height: 40%;
+    display: flex;
+    justify-content: center;        
+    align-items: center;
+    }
+
+.pokemonSelect {
+    font-size: small;
+    margin-bottom: .2em;
+    text-transform:uppercase;
+    // color:yellow;
+}

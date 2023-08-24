@@ -5,26 +5,27 @@
         <div class="pkm-left">
             <div class="name">{{this.pokemon?.name}}</div>
             <div class="img">
-                <img src="{{this.pokemon?.sprites?.back_default}}" alt="image gauche">
-                <img src="{{this.pokemon?.sprites?.front_default}}" alt="image droite">
+                <img class="imgSacha" *ngIf="!pokemon" src="https://66.media.tumblr.com/tumblr_mai132OrFS1rfjowdo1_500.gif" alt="Sacha et Pika">
+                <img *ngIf="pokemon" src="{{this.pokemon?.sprites?.back_default}}" alt="image back">
+                <img *ngIf="pokemon" src="{{this.pokemon?.sprites?.front_default}}" alt="image front">
             </div>
-            <div class="description">description
+            <div class="description">{{this.pokemonDetails}}
 
             </div>
             <div class="info">
-                <p>N°{{this.pokemon?.id}}</p>
-                <p>poids: {{this.pokemon?.weight}}</p>
-                <p>taille: {{this.pokemon?.height}}</p>
+                <p class="infoInside">N°{{this.pokemon?.id}}</p>
+                <p class="infoInside">poids: {{this.pokemon?.weight}}</p>
+                <p class="infoInside">taille: {{this.pokemon?.height}}</p>
             </div>
         </div>
         <div class="pkm-right">
             <div class="pkm-list">Liste des pokemons</div>
             <ul>
-                <li (click)="getPokemonDetails(pokemon.name)" *ngFor="let pokemon of pokemonList">{{pokemon.name}}</li>
+                <li class="pokemonSelect" *ngFor="let pokemon of pokemonList" (click)="getPokemonDetails(pokemon.name)">{{pokemon.name}}</li>
             </ul>
             <div class="next-previous">
-                <button>⬆</button>
-                <button>⬇</button>
+                <button (click)="previousPage()">⬆</button>
+                <button (click)="nextPage()">⬇</button>
             </div>
         </div>
     </div>

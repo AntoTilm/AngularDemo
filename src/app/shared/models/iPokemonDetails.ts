@@ -4,4 +4,7 @@ export interface iPokemonDetails {
     id : number;
     weight : number;
     height : number;
+    totalCount : number;
+    next : string;
+    previous : string;
 }
