@@ -4,17 +4,17 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonService {
+export class PokemonRequestService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemonListService(url : string) {
+  getAllPokemon(url : string) {
     return this.http.get<any>(url);
   }
-  getPokemonDetailsService (name : string) {
+  getPokemonByName (name : string) {
     return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/'+name);
   }
-  getPokemonDescriptionService (name : string) {
+  getFrenchDetails (name : string) {
     return this.http.get<any>('https://pokeapi.co/api/v2/pokemon-species/'+name);
   }
 }

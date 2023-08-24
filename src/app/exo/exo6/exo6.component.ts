@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { iPokemonDetails } from 'src/app/shared/models/iPokemonDetails';
-import { PokemonService } from 'src/app/shared/services/pokemon.service';
+import { PokemonRequestService } from 'src/app/shared/services/pokemon-request.service';
 
 @Component({
   selector: 'app-exo6',
@@ -16,10 +16,10 @@ export class Exo6Component implements OnInit {
   pokemonDetails?: string;
   pokemonDetailsTemp?: any[];
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private _pokemonHttpRequest: PokemonRequestService) { }
   
   ngOnInit(): void {
-    this.pokemonService.getPokemonListService('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20').subscribe(data => {
+    this._pokemonHttpRequest.getAllPokemon('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20').subscribe(data => {
       this.pokemonList = data.results;
       this.totalCount = data.count;
       this.next = data.next;
@@ -34,7 +34,7 @@ export class Exo6Component implements OnInit {
   nextPage() : void {
     if(this.next!=null) {
 
-    this.pokemonService.getPokemonListService(this.next).subscribe(data => {
+    this._pokemonHttpRequest.getAllPokemon(this.next).subscribe(data => {
       this.pokemonList = data.results;
       this.next = data.next;
       this.previous = data.previous;
@@ -44,14 +44,14 @@ export class Exo6Component implements OnInit {
 previousPage(): void {
   if(this.previous!=null) {
 
-  this.pokemonService.getPokemonListService(this.previous).subscribe(data => {
+  this._pokemonHttpRequest.getAllPokemon(this.previous).subscribe(data => {
     this.pokemonList = data.results;
     this.next = data.next;
     this.previous = data.previous;
 })
 }}
 getPokemonDescription(name : string) {
-  this.pokemonService.getPokemonDescriptionService(name).subscribe(data => {
+  this._pokemonHttpRequest.getFrenchDetails(name).subscribe(data => {
     
     this.pokemonDetailsTemp = data.flavor_text_entries;
     const indexWithFrenchLanguage = this.pokemonDetailsTemp?.findIndex((item) => item.language.name === 'fr')
@@ -62,7 +62,7 @@ getPokemonDescription(name : string) {
   });
 }
   getPokemonDetails(name : string) {
-    this.pokemonService.getPokemonDetailsService(name).subscribe(data => {
+    this._pokemonHttpRequest.getPokemonByName(name).subscribe(data => {
       this.pokemon = data;
       // console.log(this.pokemon); 
       this.getPokemonDescription(name)     
