@@ -13,6 +13,7 @@ import { PokemonRequestService } from 'src/app/shared/services/pokemon-request.s
 export class Exo6Component implements OnInit {
   // Objets à affiché dans le HTML
   pokemonList: iPokemonBase[] = []; 
+  pokemonListFrench: iPokemonBase[] = []; 
   pokemonDetails? : iPokemonDetails; 
   pokemonFrenchText?: iPokemonFrenchDetails;
   pokemonFrenchName?: iPokemonFrenchDetails;
