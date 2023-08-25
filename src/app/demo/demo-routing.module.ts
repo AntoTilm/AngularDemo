@@ -15,6 +15,7 @@ import { Demo10Component } from './demo10/demo10.component';
 import { CreateTrackApiComponent } from './demo10/create-track-api/create-track-api.component';
 import { UpdateTrackApiComponent } from './demo10/update-track-api/update-track-api.component';
 import { connectedGuard } from '../shared/guards/connected.guard';
+import { Demo11Component } from './demo11/demo11.component';
 
 const routes: Routes = [
   //Liste de tous les liens enfants de Demo
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path : "demo9", component : Demo9Component },
   { path : "demo10" , component : Demo10Component },
   { path : "demo10/create", component : CreateTrackApiComponent },
-  { path : "demo10/update/:id", component : UpdateTrackApiComponent }
+  { path : "demo10/update/:id", component : UpdateTrackApiComponent },
+  { path : "demo11", component : Demo11Component }
 ];
 
 @NgModule({
