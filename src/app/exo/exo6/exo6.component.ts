@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { find } from 'rxjs';
 import { iPokemonBase } from 'src/app/shared/models/iPokemonBase';
 import { iPokemonDetails } from 'src/app/shared/models/iPokemonDetails';
 import { iPokemonFrenchDetails } from 'src/app/shared/models/iPokemonFrenchDetails';
@@ -12,7 +13,9 @@ import { PokemonRequestService } from 'src/app/shared/services/pokemon-request.s
 
 export class Exo6Component implements OnInit {
   // Objets à affiché dans le HTML
-  pokemonList: iPokemonBase[] = []; 
+  pokemonListEnglish: iPokemonBase[] = []; 
+  pokemonListEnglish2: iPokemonBase[] = []; 
+  pokemonListNext: iPokemonBase[] = []; 
   pokemonListFrench: iPokemonBase[] = []; 
   pokemonDetails? : iPokemonDetails; 
   pokemonFrenchText?: iPokemonFrenchDetails;
@@ -58,6 +61,10 @@ export class Exo6Component implements OnInit {
       this.findIndex();
       this.pokemonDetails = undefined;
       this.pokemonFrenchText = undefined;
+      this.frenchRequestPokemonList ()
+      this.pokemonListFrench.forEach(element => {
+        console.log(element.name);        
+      });
     })
   }
 
@@ -72,6 +79,7 @@ export class Exo6Component implements OnInit {
         this.findIndex()
         this.dataAssignmentToProperty(data)
       })
+
     }
   } 
 
@@ -112,15 +120,32 @@ export class Exo6Component implements OnInit {
     });
     
   }
-  
+
+  frenchRequestPokemonList() {
+    this._pokemonHttpRequest.getPokemonAll(this.actualUrl!).subscribe(data => {
+      this.pokemonListNext = data.results;      
+      this.pokemonListNext.forEach((element: any, index: number) => {
+        this._pokemonHttpRequest.getPokemonSpeciesFrenchDetails(element.name).subscribe(data2 => { 
+          const temp = data2.names.find((item: iPokemonFrenchDetails) => item.language.name === 'fr');     
+          if (temp) {
+            this.pokemonListFrench[index] = { name: temp.name, url : '' };
+          }
+        });               
+      })
+    })     
+  }
+
   /**
    * @description Affecte les données des requetes API pour pokemonList aux propriété pokemonList, nextUrl et previousUrl
    */
   dataAssignmentToProperty(data : any){
-    this.pokemonList = data.results;
+    this.pokemonListEnglish = data.results;
     this.nextUrl = data.next;
     this.previousUrl = data.previous;
     this.pokemonCount = data.count
+    this.frenchRequestPokemonList ()
+    this.pokemonListEnglish2 = this.pokemonListEnglish
+    this.pokemonListEnglish = this.pokemonListFrench
   }
 
   /**
