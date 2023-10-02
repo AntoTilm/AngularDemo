@@ -4,8 +4,9 @@ import { FakeAuthService } from '../services/fake-auth.service';
 import { map } from 'rxjs';
 
 export const connectedGuard: CanActivateFn = (route, state) => {
-  //Comme la guard est une fonction et plus une classe depuis la dernière maj, on doit injecter les services et les modules, comme suit :
-  const router = inject(Router);
+  //Comme la guard est une fonction et plus une classe depuis la dernière maj, on doit injecter les services et les modules, comme suit : inject(Router)
+  // Antoine: injecter le Router dans notre classe permet d'utiliser les redirections (en cas de return false par exemple). Un simple if/else return true/false permet d'avoir déja une guard 
+  const router = inject(Router); 
   const fakeAuthService = inject(FakeAuthService);
 
   // On vérifie si l'utilisateur est connecté via son id stocké dans le localStorage
