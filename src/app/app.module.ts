@@ -7,7 +7,8 @@ import { HomeComponent } from './shared/components/home/home.component';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFrBe from '@angular/common/locales/fr-BE';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthTokenInterceptor } from './shared/interceptors/auth-token.interceptor';
 
 registerLocaleData(localeFrBe);
 
@@ -25,6 +26,7 @@ registerLocaleData(localeFrBe);
   exports : [],
   providers: [
     { provide : LOCALE_ID, useValue : "fr-BE"},
+    { provide : HTTP_INTERCEPTORS, useClass : AuthTokenInterceptor, multi : true }
   ],
   bootstrap: [AppComponent]
 })

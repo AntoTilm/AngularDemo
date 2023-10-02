@@ -20,7 +20,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       { title : 'Demo 6 : Les formulaires', url : '/demo/demo6'},
       { title : 'Demo 8 : CRUD avec le Routing', url : '/demo/demo8'},
       { title : 'Demo 9 : HttpClient -> Requêtes API', url : '/demo/demo9'},
-      { title : 'Demo 10 : CRUD FAKE-API (json-server)', url : '/demo/demo10'}
+      { title : 'Demo 10 : CRUD FAKE-API (json-server)', url : '/demo/demo10'},
+      { title : 'Demo 11 : Interceptor & Resolver' , url : '/demo/demo11'}
      ]},
      { title : 'Les Exos', url : '/exo', isVisible : false, children : [
       { title : 'Exo 1 : Le Timer', url : '/exo/exo1'},

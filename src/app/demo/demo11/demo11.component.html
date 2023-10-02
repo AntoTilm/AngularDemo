@@ -1,0 +1,50 @@
+<h2>Interceptor & Resolver</h2>
+<div class="chapter">
+    <div class="flex">
+        <div class="w-1/2">
+            <div>
+                <h3>Créer un compte :</h3>
+                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                    <input type="text" placeholder="Nom" formControlName="lastname">
+                    <input type="text" placeholder="Prénom" formControlName="firstname">
+                    <input type="email" placeholder="Email" formControlName="email">
+                    <input type="password" placeholder="Password" formControlName="password">
+                    <div>
+                        <input class="btn" type="submit" value="Créer mon compte">
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <h3>Se connecter :</h3>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <input type="email" placeholder="Email" formControlName="email">
+                    <input type="password" placeholder="Password" formControlName="password">
+                    <div>
+                        <input class="btn" type="submit" value="Se connecter">
+                    </div>
+                </form>
+            </div>
+
+            <button (click)="moveToken()">Dégager le Token</button>
+        </div>
+
+
+
+        <div class="w-1-2">
+            <h3>Affichage des tracks : </h3>
+            <button class="btn" (click)="getAll()">Charger les tracks</button>
+
+            <ul>
+                <li *ngFor="let track of tracks">
+                    {{ track.title }}
+                </li>
+            </ul>
+
+            <p *ngIf="errorTracks.length > 0">
+                {{ errorTracks }}
+            </p>
+        </div>
+    </div>
+
+</div>

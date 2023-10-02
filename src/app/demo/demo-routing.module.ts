@@ -14,23 +14,27 @@ import { Demo9Component } from './demo9/demo9.component';
 import { Demo10Component } from './demo10/demo10.component';
 import { CreateTrackApiComponent } from './demo10/create-track-api/create-track-api.component';
 import { UpdateTrackApiComponent } from './demo10/update-track-api/update-track-api.component';
+import { connectedGuard } from '../shared/guards/connected.guard';
+import { Demo11Component } from './demo11/demo11.component';
+import { trackResolver } from '../shared/resolvers/track.resolver';
 
 const routes: Routes = [
   //Liste de tous les liens enfants de Demo
   { path : "demo1" , component : Demo1Component },
-  { path : "demo2" , component : Demo2Component },
+  { path : "demo2" , component : Demo2Component , canActivate : [connectedGuard]},
   { path : "demo3" , component : Demo3Component },
   { path : "demo4" , component : Demo4Component },
   { path : "demo5" , component : Demo5Component },
-  { path : "demo6" , component : Demo6Component },
+  { path : "demo6" , component : Demo6Component, canActivate : [connectedGuard] },
   { path : "demo8", component : Demo8Component },
   { path : "demo8/create" , component : CreateTrackComponent },
   { path : "demo8/detail/:id", component : DetailTrackComponent },
   { path : "demo8/update/:id", component : UpdateTrackComponent },
   { path : "demo9", component : Demo9Component },
-  { path : "demo10" , component : Demo10Component },
+  { path : "demo10" , component : Demo10Component, resolve : { tracks : trackResolver } },
   { path : "demo10/create", component : CreateTrackApiComponent },
-  { path : "demo10/update/:id", component : UpdateTrackApiComponent }
+  { path : "demo10/update/:id", component : UpdateTrackApiComponent },
+  { path : "demo11", component : Demo11Component }
 ];
 
 @NgModule({
